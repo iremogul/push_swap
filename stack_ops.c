@@ -1,6 +1,5 @@
 #include "push_swap.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <limits.h>
 void stack_push(t_stack *stack, int value)
 {

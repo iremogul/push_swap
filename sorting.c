@@ -1,6 +1,4 @@
 #include "push_swap.h"
-#include "push_swap.h"
-
 int	is_sorted(t_stack *stack)
 {
 	t_node	*curr;

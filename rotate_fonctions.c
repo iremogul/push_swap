@@ -1,6 +1,4 @@
 #include "push_swap.h"
-#include <unistd.h>
-#include <stdlib.h>
 void rotate_core(t_stack *stack)
 {
     t_node *first;

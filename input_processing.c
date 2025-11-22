@@ -1,7 +1,4 @@
 #include "push_swap.h"
-#include <stdlib.h>
-#include <limits.h>
-#include <unistd.h>
 
 static int	count_words(char const *s, char c)
 {
@@ -85,8 +82,6 @@ static char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-/* --- Input Processing İşlemleri --- */
-
 static void	free_split_array(char **array)
 {
 	int	i;
@@ -105,9 +100,15 @@ static int	is_valid_format(char *s)
 		return (0);
 	if (*s == '+' || *s == '-')
 		s++;
-	// TODO: while ile 0 ları geç
 	if (!*s)
 		return (0);
+	if (*s == '0')
+	{
+		while (*s == '0')
+			s++;
+		if (!*s)
+			return (1);
+	}
 	while (*s)
 	{
 		if (*s < '0' || *s > '9')
@@ -199,7 +200,7 @@ static int	process_args_and_fill_stack(char **args, t_stack *stack_a)
 	while (args[i])
 		i++;
 	if (i == 0)
-		return (0);
+		return (write(2, "Error\n", 6), 0);
 	while (--i >= 0)
 	{
 		if (!is_valid_format(args[i])

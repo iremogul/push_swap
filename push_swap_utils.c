@@ -1,5 +1,4 @@
     #include "push_swap.h"
-#include <stdlib.h>
 
 t_stack *stack_new(void)//(void)-> dışarıdan veri almaz,sadece stack oluşturur.
 {

@@ -1,54 +1,39 @@
 #include "push_swap.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h> // printf için (Sadece testte kullanıyoruz, projede yasak olabilir)
 
-// Stack'i yazdırmak için yardımcı fonksiyon (Sadece test amaçlı)
-void print_stack(t_stack *stack, char *stack_name)
+static void	clean_exit(t_stack *stack_a, t_stack *stack_b)
 {
-    t_node *current;
-
-    printf("\n--- %s ---\n", stack_name);
-    if (!stack || !stack->top)
-    {
-        printf("(Empty)\n");
-        return;
-    }
-    current = stack->top;
-    while (current)
-    {
-        printf("%d\n", current->data);
-        current = current->next;
-    }
-    printf("--------------\n");
+	if (stack_a)
+		stack_free(stack_a);
+	if (stack_b)
+		stack_free(stack_b);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_stack *stack_a;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-    // 1. Argüman kontrolü
-    if (argc < 2)
-        return (0);
-
-    // 2. Stack A'yı başlat
-    stack_a = stack_new();
-    if (!stack_a)
-        return (1);
-
-    // 3. Girdileri işle ve Stack A'yı doldur
-    // parse_input_and_fill başarılı olursa 1, hata olursa 0 döner.
-    if (!parse_input_and_fill(argc, argv, stack_a))
-    {
-        // Hata durumunda stack'i temizle ve çık (Error mesajı zaten fonksiyon içinde yazılıyor)
-        stack_free(stack_a);
-        return (1);
-    }
-
-    // 4. Sonucu gör: Stack A'yı yazdır
-    print_stack(stack_a, "Stack A");
-
-    // 5. Temizlik: Stack'i boşalt ve programdan çık
-    stack_free(stack_a);
-    return (0);
+	if (argc < 2)
+		return (0);
+	stack_a = stack_new();
+	stack_b = stack_new();
+	if (!stack_a || !stack_b)
+		return (clean_exit(stack_a, stack_b), 1);
+	if (!parse_input_and_fill(argc, argv, stack_a))
+		return (clean_exit(stack_a, stack_b), 1);
+	if (is_sorted(stack_a))
+		return (clean_exit(stack_a, stack_b), 0);
+	index_list(stack_a);
+	if (stack_a->size == 2)
+		sa(stack_a);
+	else if (stack_a->size == 3)
+		sort_3(stack_a);
+	else if (stack_a->size == 4)
+		sort_4(stack_a, stack_b);
+	else if (stack_a->size == 5)
+		sort_5(stack_a, stack_b);
+	else
+		radix_sort(stack_a, stack_b);
+	clean_exit(stack_a, stack_b);
+	return (0);
 }

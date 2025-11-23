@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   radix.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iogul <iogul@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/23 13:35:33 by iogul             #+#    #+#             */
+/*   Updated: 2025/11/23 15:04:07 by iogul            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void	sort_int_array(int *tab, int size)
+void	sort_int_array(int *tab, int size)
 {
 	int	i;
 	int	j;
@@ -24,7 +36,7 @@ static void	sort_int_array(int *tab, int size)
 	}
 }
 
-static int	*stack_to_array(t_stack *stack)
+int	*stack_to_array(t_stack *stack)
 {
 	int		*tab;
 	t_node	*curr;
@@ -72,7 +84,7 @@ void	index_list(t_stack *stack)
 	free(tab);
 }
 
-static int	get_max_bits(t_stack *stack)
+int	get_max_bits(t_stack *stack)
 {
 	int	max;
 	int	max_bits;

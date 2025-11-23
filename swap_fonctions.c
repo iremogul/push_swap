@@ -1,33 +1,47 @@
-#include "push_swap.h"
-void swap_core(t_stack *stack)
-{
-    t_node *first;
-    t_node *second;
-    int tmp;
-    
-    if(is_empty(stack)|| stack ->size <2)
-        return;
-    
-    first = stack->top;
-    second = stack-> top->next;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   swap_fonctions.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iogul <iogul@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/23 12:28:29 by iogul             #+#    #+#             */
+/*   Updated: 2025/11/23 12:28:50 by iogul            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    tmp = first->data;
-    first->data = second->data;
-    second->data = tmp;
-}
-void sa(t_stack *stack_a)
+#include "push_swap.h"
+
+void	swap_core(t_stack *stack)
 {
-    swap_core(stack_a);
-    write(1, "sa\n", 3);
+	t_node	*first;
+	t_node	*second;
+	int		tmp;
+
+	if (is_empty(stack) || stack->size < 2)
+		return ;
+	first = stack->top;
+	second = stack->top->next;
+	tmp = first->data;
+	first->data = second->data;
+	second->data = tmp;
 }
-void sb(t_stack *stack_b)
+
+void	sa(t_stack *stack_a)
 {
-    swap_core(stack_b);
-    write(1, "sb\n", 3);
+	swap_core(stack_a);
+	write(1, "sa\n", 3);
 }
-void ss(t_stack *stack_a, t_stack *stack_b)
+
+void	sb(t_stack *stack_b)
 {
-    swap_core(stack_a);
-    swap_core(stack_b);
-    write(1,"ss\n", 3);
+	swap_core(stack_b);
+	write(1, "sb\n", 3);
+}
+
+void	ss(t_stack *stack_a, t_stack *stack_b)
+{
+	swap_core(stack_a);
+	swap_core(stack_b);
+	write(1, "ss\n", 3);
 }

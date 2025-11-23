@@ -4,7 +4,9 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
-       input_processing.c \
+       input_parsing.c \
+       input_split_utils.c \
+       input_check_utils.c \
        stack_ops.c \
        push_swap_utils.c \
        push_operations.c \

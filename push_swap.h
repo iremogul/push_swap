@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: iogul <iogul@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/23 11:37:34 by iogul             #+#    #+#             */
-/*   Updated: 2025/11/23 11:37:46 by iogul            ###   ########.fr       */
+/*   Created: 2025/11/23 18:36:19 by iogul             #+#    #+#             */
+/*   Updated: 2025/11/23 18:36:24 by iogul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int		stack_size(t_stack *stack);
 void	stack_free(t_stack *stack);
 
 int		parse_input_and_fill(int argc, char **argv, t_stack *stack_a);
+int		process_args_and_fill_stack(char **args, t_stack *stack_a);
+char	**ft_split(char const *s, char c);
+void	free_split_array(char **array);
 
 void	sa(t_stack *stack_a);
 void	sb(t_stack *stack_b);

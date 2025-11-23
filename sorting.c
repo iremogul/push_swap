@@ -1,33 +1,28 @@
-#include "push_swap.h"
-int	is_sorted(t_stack *stack)
-{
-	t_node	*curr;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sorting.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iogul <iogul@student.42kocaeli.com.tr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/23 14:53:20 by iogul             #+#    #+#             */
+/*   Updated: 2025/11/23 18:47:37 by iogul            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	if (!stack)
-		return (1);
-	curr = stack->top;
-	while (curr && curr->next)
-	{
-		if (curr->data > curr->next->data)
-			return (0);
-		curr = curr->next;
-	}
-	return (1);
-}
+#include "push_swap.h"
 
 void	sort_3(t_stack *a)
 {
-	t_node	*node;
 	int		x;
 	int		y;
 	int		z;
 
 	if (!a || !a->top || !a->top->next || !a->top->next->next)
 		return ;
-	node = a->top;
-	x = node->data;
-	y = node->next->data;
-	z = node->next->next->data;
+	x = a->top->data;
+	y = a->top->next->data;
+	z = a->top->next->next->data;
 	if (x > y && y < z && x < z)
 		sa(a);
 	else if (x > y && y > z)
@@ -46,7 +41,7 @@ void	sort_3(t_stack *a)
 		rra(a);
 }
 
-static int	get_min_index(t_stack *a)
+int	get_min_index(t_stack *a)
 {
 	int		min;
 	int		idx;
@@ -70,7 +65,7 @@ static int	get_min_index(t_stack *a)
 	return (idx);
 }
 
-static void	bring_min_to_top(t_stack *a)
+void	bring_min_to_top(t_stack *a)
 {
 	int	idx;
 	int	size;
@@ -110,4 +105,3 @@ void	sort_5(t_stack *a, t_stack *b)
 	sort_4(a, b);
 	pa(a, b);
 }
- 

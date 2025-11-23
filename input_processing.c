@@ -1,4 +1,7 @@
 #include "push_swap.h"
+#include <stdlib.h>
+#include <limits.h>
+#include <unistd.h>
 
 static int	count_words(char const *s, char c)
 {
@@ -73,7 +76,7 @@ static char	**ft_split(char const *s, char c)
 		{
 			split[j++] = word_dup(s, index, i);
 			if (!split[j - 1])
-				return (free_split(split, j - 1)); // Hata durumunda temizle
+				return (free_split(split, j - 1));
 			index = -1;
 		}
 		i++;
@@ -212,14 +215,36 @@ static int	process_args_and_fill_stack(char **args, t_stack *stack_a)
 	return (1);
 }
 
+static int	contains_digit(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] >= '0' && s[i] <= '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 int	parse_input_and_fill(int argc, char **argv, t_stack *stack_a)
 {
 	char	*joined_args;
 	char	**args;
 	int		result;
+	int		i;
 
 	if (argc < 2)
 		return (0);
+	i = 1;
+	while (i < argc)
+	{
+		if (!contains_digit(argv[i]))
+			return (write(2, "Error\n", 6), 0);
+		i++;
+	}
 	joined_args = join_args(argc, argv);
 	if (!joined_args)
 		return (0);

@@ -7,8 +7,8 @@ SRCS = main.c \
        input_processing.c \
        stack_ops.c \
        push_swap_utils.c \
-       swap_fonctions.c \
        push_operations.c \
+       swap_fonctions.c \
        rotate_fonctions.c \
        reverse_rotate_fonctions.c \
        sorting.c \
